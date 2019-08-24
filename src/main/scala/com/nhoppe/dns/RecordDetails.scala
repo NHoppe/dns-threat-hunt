@@ -6,25 +6,32 @@ import java.net.IDN
 // https://www.ietf.org/rfc/rfc1035.txt
 
 @throws(classOf[IllegalArgumentException])
-class RecordDetails(fullyQualifiedDomainName:String, qtype:Qtype.Value, qclass:Qclass.Value, ttl:Option[Int]) {
-  val fqdn:String = IDN.toASCII(fullyQualifiedDomainName)
+class RecordDetails(fullyQualifiedDomainName:String, qTypeValue:Int, qClassValue:Int, ttl:Int = -1) {
+  val fqdn:String = IDN.toASCII(fullyQualifiedDomainName.replaceFirst("^http[s]?://",""))
+  val qtype = Qtype(qTypeValue)
+  val qclass = Qclass(qClassValue)
 
-  def getFQDN():String = {
+  def getFQDN(): String = {
     fqdn
   }
 
-  def getQTYPE():Qtype.Value = {
-    qtype
+  def getQTypeValue(): Int = {
+    qtype.id
   }
 
-  def getQCLASS():Qclass.Value = {
-    qclass
+  def getQTypeName(): String = {
+    qtype.toString
   }
 
-  def getTTL():Int = {
-    ttl match {
-      case Some(ttl) => ttl
-      case None => -1
-    }
+  def getQClassValue(): Int = {
+    qclass.id
+  }
+
+  def getQClassName(): String = {
+    qclass.toString
+  }
+
+  def getTTL(): Int = {
+    ttl
   }
 }

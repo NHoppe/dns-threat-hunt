@@ -15,16 +15,18 @@ object FqdnAssessment {
   // def entropy = {
   // }
 
-  def letterCase(fqdn:String): Map[String,Int] = {
-    val listChars: List[Char] = fqdn.toList
-    Map(
-      "uppercase" -> listChars.count(_.isUpper),
-      "lowercase" -> listChars.count(_.isLower)
-    )
+  def numberOfUppercaseLetters(fqdn:String): Int = {
+    val listChars:List[Char] = fqdn.toList
+    listChars.count(_.isUpper)
+  }
+
+  def numberOfLowercaseLetters(fqdn:String): Int = {
+    val listChars:List[Char] = fqdn.toList
+    listChars.count(_.isLower)
   }
 
   def hasNonAlphanumeric(fqdn:String): Boolean = {
-    val detected: Option[Char] = fqdn.find(_.isLetterOrDigit)
+    val detected: Option[Char] = fqdn.find(c => !(c.isLetterOrDigit || "-.".contains(c)))
     detected match {
       case Some(detected) => true
       case None => false

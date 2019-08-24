@@ -5,10 +5,10 @@ import com.nhoppe.dns.Qtype
 
 object QtypeAssessment {
   def isUnusualClientQuery(qtype:Int): Boolean = {
-    qtype == Qtype.AXFR || qtype == Qtype.ANY
+    Qtype(qtype) == Qtype.AXFR || Qtype(qtype) == Qtype.ANY
   }
 
   def isTxtQuery(qtype:Int): Boolean = {
-    qtype == Qtype.TXT
+    Qtype(qtype) == Qtype.TXT
   }
 }
