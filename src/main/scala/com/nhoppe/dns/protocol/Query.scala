@@ -1,15 +1,15 @@
-package com.nhoppe.dns
+package com.nhoppe.dns.protocol
 
-import java.net.IDN
+import com.nhoppe.common.Sanitize
 
 // RFC1035
 // https://www.ietf.org/rfc/rfc1035.txt
 
 @throws(classOf[IllegalArgumentException])
-class RecordDetails(fullyQualifiedDomainName:String, qTypeValue:Int, qClassValue:Int, ttl:Int = -1) {
-  val fqdn:String = IDN.toASCII(fullyQualifiedDomainName.replaceFirst("^http[s]?://",""))
-  val qtype = Qtype(qTypeValue)
-  val qclass = Qclass(qClassValue)
+class Query(fullyQualifiedDomainName:String, qTypeValue:Int, qClassValue:Int) {
+  val fqdn:String = Sanitize.fqdn(fullyQualifiedDomainName)
+  val qtype = QType(qTypeValue)
+  val qclass = QClass(qClassValue)
 
   def getFQDN(): String = {
     fqdn
@@ -29,9 +29,5 @@ class RecordDetails(fullyQualifiedDomainName:String, qTypeValue:Int, qClassValue
 
   def getQClassName(): String = {
     qclass.toString
-  }
-
-  def getTTL(): Int = {
-    ttl
   }
 }

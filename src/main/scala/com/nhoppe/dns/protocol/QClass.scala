@@ -1,10 +1,10 @@
-package com.nhoppe.dns
+package com.nhoppe.dns.protocol
 
 // RFC1035
 // https://www.ietf.org/rfc/rfc1035.txt
 
-object Qclass extends Enumeration {
-  type Qclass = Value
+object QClass extends Enumeration {
+  type QClass = Value
 
   val IN = Value(1)
   val CS = Value(2)

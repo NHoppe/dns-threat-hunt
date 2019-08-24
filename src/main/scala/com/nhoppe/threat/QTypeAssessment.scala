@@ -1,14 +1,14 @@
 package com.nhoppe.threat
 
 import scala.collection.immutable.Map
-import com.nhoppe.dns.Qtype
+import com.nhoppe.dns.protocol.QType
 
-object QtypeAssessment {
+object QTypeAssessment {
   def isUnusualClientQuery(qtype:Int): Boolean = {
-    Qtype(qtype) == Qtype.AXFR || Qtype(qtype) == Qtype.ANY
+    QType(qtype) == QType.AXFR || QType(qtype) == QType.ANY
   }
 
   def isTxtQuery(qtype:Int): Boolean = {
-    Qtype(qtype) == Qtype.TXT
+    QType(qtype) == QType.TXT
   }
 }
