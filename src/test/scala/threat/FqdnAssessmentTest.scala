@@ -19,6 +19,10 @@ class FqdnAssessmentTest extends FunSpec {
       assert(FqdnAssessment.domainLength(query.getFQDN) == 67)
     }
 
+    it("should return 4.895605841389559 entropy") {
+      assert(FqdnAssessment.entropy(query.getFQDN) == 4.895605841389559)
+    }
+
     it("should return 13 uppercase characters") {
       assert(FqdnAssessment.numberOfUppercaseLetters(query.getFQDN) == 13)
     }

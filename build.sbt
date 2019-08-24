@@ -9,3 +9,5 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.8" % "test"
 
 // Required according to https://github.com/sbt/sbt/issues/4103#issuecomment-509162557
 resolvers in ThisBuild += "Artima Maven Repository" at "http://repo.artima.com/releases"
+
+logBuffered in Test := false

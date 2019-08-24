@@ -1,6 +1,7 @@
 package com.nhoppe.threat
 
 import scala.collection.immutable.Map
+import scala.math._
 
 object FqdnAssessment {
   def numberOfsubdomains(fqdn:String): Int = {
@@ -11,9 +12,14 @@ object FqdnAssessment {
     fqdn.length
   }
 
-  // TODO
-  // def entropy = {
-  // }
+  def entropy(fqdn:String): Double = {
+    fqdn
+      .groupBy (character => character)
+      .values
+      .map(item => item.length.toDouble / fqdn.length )
+      .map(p => -p * log10(p) / log10(2))
+      .sum
+  }
 
   def numberOfUppercaseLetters(fqdn:String): Int = {
     val listChars:List[Char] = fqdn.toList
